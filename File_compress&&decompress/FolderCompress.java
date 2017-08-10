@@ -1,4 +1,4 @@
-import java.io.BufferedInputStream;
+﻿import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,7 +22,7 @@ public class FolderCompress {
 				// 为每一个文件分别建立一个输入流
 				BufferedInputStream bis = new BufferedInputStream(new FileInputStream(files[i]));
 				
-				// 设置zip文件夹内各文件被压缩后的名字
+				// 设置zip文件夹内各文件被压缩后的名字, ZipEntry代表压缩文件中的子文件
 				zos.putNextEntry(new ZipEntry(file.getName() + file.separator + files[i].getName()));
 				while (true) {
 					byte[] b = new byte[100];

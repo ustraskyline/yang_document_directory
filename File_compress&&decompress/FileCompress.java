@@ -1,4 +1,4 @@
-import java.io.BufferedInputStream;
+﻿import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,7 +17,8 @@ public class FileCompress {
 		ZipOutputStream zos = new ZipOutputStream(new FileOutputStream("D:\\yangjia.zip"));
 		BufferedOutputStream bos = new BufferedOutputStream(zos);
 
-		// 设置zip内部被压缩文件的名字
+		// ZipEntry对象代表Zip压缩文件中的的子文件
+		// putNextEntry() 设置每一个ZipEntry对象
 		zos.putNextEntry(new ZipEntry("compress.txt"));
 
 		// 设置压缩文件的注释

@@ -1,4 +1,4 @@
-import java.io.BufferedInputStream;
+﻿import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,9 +17,9 @@ import java.util.zip.ZipInputStream;
 public class FileDecompress {
 	public static void main(String[] args) throws ZipException, IOException {
 		// 需要解压缩的Zip文件
-		File file = new File("D:\\yang.zip");
+		File file = new File("D:" + File.separator + "yang.zip");
 
-		// get a ZipFile instance
+		// ZipFile代表压缩后的Zip文件
 		ZipFile zipFile = new ZipFile(file);
 
 		// 将需要解压缩的Zip文件包装成 ZipInputStream
@@ -29,17 +29,17 @@ public class FileDecompress {
 		// decompress file temporarily
 		ZipEntry entry = null;
 
-		// a circle to get every file
+		// 获取Zip压缩文件中的子文件，然后分别进行操作
 		while ((entry = zis.getNextEntry()) != null) {
 			System.out.println("decompress file :" + entry.getName());
 
-			// 定义存放解压缩后各文件存放路径
-			File outFile = new File("D:\\yang_decompress\\" + entry.getName());
+			// 定义存放解压缩后各子文件的存放路径
+			File outFile = new File("D:" + File.separator + "yang_decompress" + File.separator + entry.getName());
 
-			// 对各文件分别创建BufferedInputStream
+			// 对各子文件分别创建BufferedInputStream
 			BufferedInputStream bis = new BufferedInputStream(zipFile.getInputStream(entry));
 
-			// 分别对应各文件的BufferedOutputStream
+			// 分别对应子各文件的BufferedOutputStream
 			BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outFile));
 			byte[] b = new byte[100];
 			while (true) {
