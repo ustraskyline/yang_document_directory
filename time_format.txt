@@ -1,0 +1,13 @@
+﻿// 前格式器
+SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+// 后格式器
+SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+
+// 调用前格式器的 parse() 方法将时间字符串转换为Date对象
+Date date = sdf1.parse(time);
+
+// 调用后格式器的 format() 方法将 Date 对象格式化为指定的字符串格式
+String pubtime = sdf2.format(date);
+
+return pubtime;
