@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="privilege" class="PrivilegeInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="privilege" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="loginAction" class="LoginAction">
+			<result>/main.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<!-- 访问BookAction时，先到达拦截器PrivilegeInterceptor
+			 拦截器发现用户已登录，则返回success.jsp，否则返回/login.jsp
+		 -->
+		<action name="book_*" class="BookAction" method="{1}">
+			<result>/success.jsp</result>
+			<result name="login">/login.jsp</result>
+			
+			<!-- Action中使用拦截器 -->
+			<interceptor-ref name="myStack" />
+		</action>
+	</package>
+</struts>

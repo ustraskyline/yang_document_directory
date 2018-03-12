@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org//dtd/hibernate-mapping-3.0.dtd">
+ <hibernate-mapping>
+ 	<class name="entity.Order" table="orders">
+ 		<id name="id" column="id">
+ 			<generator class="native"/>
+ 		</id>
+ 		
+ 		<property name="address" length="50"/>
+ 		<property name="price"/>
+ 		<!-- 多的一方直接使用标签设置映射 -->
+ 		<many-to-one name="customer" class="entity.Customer" column="cid" />
+ 	</class>
+ </hibernate-mapping>

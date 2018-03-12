@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org//dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="entity.Customer" table="customer">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="name" length="20"/>
+		
+		<!-- 一的一方需要使用Set集合存储多的对象 -->
+		<set name="orders">
+			<key column="cid"/>  <!-- 在Order表中的外键列名称 -->
+			<one-to-many class="entity.Order"></one-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
