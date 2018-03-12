@@ -1,0 +1,7 @@
+访问main.jsp链接 -> 达到web.xml过滤器 -> 显示main.jsp页面
+
+点击某一链接 -> 到达web.xml过滤器 -> 本来直接到达BookAction, 但是此Action配置了拦截器，所以先到达要访问的BookAction的拦截器PrivilegeInterceptor -> 拦截器发现用户未登录, 返回Action.LOGIN
+-> 在struts.xml中根据"login"导航到/login.jsp -> 登录信息填写完毕，提交到LoginAction, LoginAction将用户添加到Session中，返回success  
+-> 在struts.xml中根据"success"导航到/main.jsp
+-> 再点击book_update -> 到达BookAction的拦截器, 拦截器发现用于已经登录，继续向下执行，在struts.xml中导航到/success.jsp 
+-> 显示用户操作成功提示信息.
