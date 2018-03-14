@@ -1,0 +1,4 @@
+最简单的Spring只需要3个文件：
+1、一个实例类文件
+2、一个applicationContext.xml文件，文件内配置了<bean>的id和实现类
+3、测试文件，通过ApplicationContext类对象来获取Bean类的实例（IoC）

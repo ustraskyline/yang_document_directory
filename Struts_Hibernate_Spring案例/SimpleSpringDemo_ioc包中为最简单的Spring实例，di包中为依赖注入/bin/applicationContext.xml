@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 在Spring容器中创建一个id为yangskyline的bean实例，使用UserDaoImpl 类来实例化该bean -->
+	<bean id="yangskyline" class="ioc.UserDaoImpl"></bean>
+
+	<bean id="user_service" class="di.UserServiceImpl">
+		<!-- 将userDao实例注入到userService实例中 -->
+		<property name="userDao" ref="yangskyline" />
+	</bean>
+</beans>

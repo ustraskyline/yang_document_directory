@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 在Spring容器中创建一个id为yangskyline的bean实例，使用UserDaoImpl 类来实例化该bean -->
+	<bean id="yangskyline" class="ioc.UserDaoImpl"></bean>
+
+	<bean id="user_service" class="di.UserServiceImpl">
+		<!-- 将userDao实例注入到userService实例中 -->
+		<property name="userDao" ref="yangskyline" />
+	</bean>
+
+	<bean id="bean3" class="cn.itcast.Bean3" scope="singletom">
+		//给Bean的构造方法传递参数
+		<constructor-arg index="0" type="String" ref="yangjia"></constructor-arg>
+		<constructor-arg index="1" type="String" value="ChengDu"></constructor-arg>
+		<constructor-arg index="2" type="String">
+			<ref></ref>
+		</constructor-arg>
+		<constructor-arg index="3" type="String">
+			<value>HelloWorld</value>
+		</constructor-arg>
+
+		//向Bean中的属性通过setter方法进行依赖注入
+		<property name="userDao" ref="yangskyline" />
+		<property name="userDao" value="yangskyline" />
+
+		<entry>Map元素的子元素，用于设置一个键值对</entry>
+		<map>用于封装Map类型属性的依赖注入</map>
+		<list>用于封装List或数组类型属性的依赖注入</list>
+		<set>用于封装Set类型属性的依赖注入</set>
+
+	</bean>
+</beans>
+
+===> 在配置文件中，通常一个普通的Bean只需要定义id(或name)和class两个属性即可.
+     若在Bean中未指定id和name,则Spring会将class值当作id使用。
