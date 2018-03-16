@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org//dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yang.User" table="user">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<!-- 代表乐观锁的version标签必须位于id标签之下 -->
+		<version name="version" column="version" type="integer" />
+		<property name="username" column="username" type="string" />
+		<property name="age" column="age" type="integer" />
+	</class>
+</hibernate-mapping>
