@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 声明被代理类Bean -->
+	<bean id="userDao" class="example.UserDaoImpl"></bean>
+	
+	<!-- 声明切面类Bean -->
+	<bean id="myAspect"  class="example.SAspect"></bean>
+	
+	<!-- 代理类 -->
+	<bean id="userDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 代理类实现的接口 -->
+		<property name="interfaces" value="example.UserDao"></property>
+		
+		<!-- 代理类的目标，即被代理类 -->
+		<property name="target" ref="userDao"></property>
+		
+		<!-- 配置代理类中用来增强目标的切面类 -->
+		<property name="interceptorNames" value="myAspect"></property>
+		
+		<!-- 如何生成代理: true使用cglib; false使用jdk动态代理 -->
+		<property name="proxyTargetClass" value="true"></property>
+	</bean>
+</beans>

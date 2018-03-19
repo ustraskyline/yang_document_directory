@@ -1,0 +1,16 @@
+NodeList nodeList = document.getElementsByTagName("dog");
+
+for(int i = 0; i < nodeList.getLength(); i++){
+	Node pet = nodeList.item(i);
+	for(Node node = pet.getFirstChild(); node != null; node = node.getNextSibling()){  //内层循环一共会调用 (2n+1) 次，n为节点个数
+		if(node.getNodeType() == Node.ELEMENT_NODE){
+			String nodeName = node.getNodeName();  //得到标签文本
+			String nodeValue = node.getFirstChild().getNodeValue();  //得到被标签包裹的TextNode节点的值
+			System.out.println( nodeName + " : " + value + "\t");
+		}
+	}
+}
+
+SAXParserFactory factory = SAXParserFactory.newInstance();
+SAXParser parser = factory.newSAXParser();
+parser.parse(fileURL, this);

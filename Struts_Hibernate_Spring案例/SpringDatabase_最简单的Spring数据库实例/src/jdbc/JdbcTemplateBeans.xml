@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Spring JDBC的配置是在Spring配置文件中完成 -->
+	
+	<!-- 声明数据源Bean -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- 连接数据库属性 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost/spring"/>
+		<property name="username" value="root"/>
+		<property name="password" value="marine1942"/>
+	</bean>
+	
+	<!-- 配置jdbc模板Bean -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<!-- 将数据源注入到JDBC模板 -->
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+</beans>
