@@ -1,23 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Spring JDBC的配置是在Spring配置文件中完成 -->
-	
-	<!-- 声明数据源Bean -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<!-- 连接数据库属性 -->
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost/spring"/>
-		<property name="username" value="root"/>
-		<property name="password" value="marine1942"/>
-	</bean>
-	
-	<!-- 配置jdbc模板Bean -->
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<!-- 将数据源注入到JDBC模板 -->
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-</beans>
+http://localhost:8889/Es5Web/Tunnel_NotesAction?method=GetMainPageInfo
+
+
+[
+{tunnel_length=5565, level=一级公路, end_time=, construction=中铁十局集团西北工程有限公司, build_status=主包已建, tunnel_name=拉脊山隧道, id=207}, 
+{tunnel_length=3649, level=高速公路, end_time=2010/12/19, construction=中铁十局集团西北工程有限公司, build_status=主包已建, tunnel_name=毛坝1号隧道, id=647}, 
+{tunnel_length=3220, level=高速公路, end_time=2012/9/22, construction=中铁十局集团西北工程有限公司, build_status=主包已建, tunnel_name=前山隧道, id=854}, 
+{count=3}
+]
+
+
+[{altitude=3200, tunnel_length=5565, start_remark=, completed_remark=, start_year=2009, traffic_year=2013, remark=1, section=B标段, project_name=青海省道西久公路（S101线）拉脊山隧道平行导洞扩建主洞工程, altitude_remark=-4041, design= 中交第二公路勘察设计研究院, intro=长3.053km，清表15644m2，挖土方3699.95m3，利用土方3699m3，借石填方5695m3，浆砌片石挡土墙2704.9m3，沥青砼路面1.21万平方米，水泥砼路面1.925万平方米。预应力砼空心板简支梁桥一座110.06m；隧道为单洞（断面10.25×5），长度2684m。, end_tiem=2013/8/7, construction=中铁十局集团西北工程有限公司, id=207, build_status=主包已建, shaft_length=0, area=青海, profession=公路工程, owner=青海省高等级公路建设管理局, level=一级公路, end_time=, traffic_remark=, tunnel_name=拉脊山隧道, completed_length=2684, start_time=2009/3/1, end_remark=, other_name=, traffic_time=2013/4/25, end_year=0, add_time=1521080715, supervisor=重庆中宇工程咨询有限责任公司, status=3, shaft=}, {altitude=1024, tunnel_length=3649, start_remark=, completed_remark=, start_year=2006, traffic_year=2011, remark=1, section=MC1, project_name=包（头）茂（名）线安康至陕川界高速公路试验段隧道工程, altitude_remark=(海拔网), design=, intro=本合同段主要工程是毛坝1号特长隧道进口段，隧道长度3612m（单洞），隧道为分离式双洞，端墙式洞门。, end_tiem=2010/12/19, construction=中铁十局集团西北工程有限公司, id=647, build_status=主包已建, shaft_length=0, area=陕西, profession=公路工程, owner=陕西省交通厅利用外资项目办公室, level=高速公路, end_time=2010/12/19, traffic_remark=, tunnel_name=毛坝1号隧道, completed_length=1806, start_time=2006/9/6, end_remark=, other_name=, traffic_time=2011/1/25, end_year=2010, add_time=1520910648, supervisor=, status=3, shaft=}, {altitude=1448, tunnel_length=3220, start_remark=, completed_remark=, start_year=2010, traffic_year=2013, remark=1, section=LJ-11, project_name=延安安塞经志丹至吴起高速公路路基桥隧工程, altitude_remark=, design=陕西省交通规划设计研究院, intro=本项目起讫里程右幅：YK51+268至YK54+500,左幅：ZK51+280至ZK54+500,长约3.232km，技术标准为高速公路。主要工程内容有：路基土石方工程41.1万方，防护排水工程0.9万方，大桥681m/1座，隧道3370米/1座（前山隧道），以及其他构造物工程等。, end_tiem=2012/9/22, construction=中铁十局集团西北工程有限公司, id=854, build_status=主包已建, shaft_length=0, area=陕西, profession=公路工程, owner=陕西省交通建设集团公司, level=高速公路, end_time=2012/9/22, traffic_remark=, tunnel_name=前山隧道, completed_length=0, start_time=2010/9/1, end_remark=, other_name=, traffic_time=2013/12/1, end_year=2012, add_time=1520910648, supervisor=, status=3, shaft=}, {count=3}]
+
+
+
+
+
+{
+ 
+
+
+
+start_year=2009, 
+traffic_year=2013, 
+
+
+ 
+
+
+
+end_tiem=2013/8/7, 
+
+id=207, 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+end_year=0, 
+add_time=1521080715, 
+
+
+
+}
+
+remark=1, 
+area=青海, 
+status=3, 
+build_status=主包已建, 
+other_name=, 
+profession=公路工程, 
+section=B标段, 
+level=一级公路, 
+start_time=2009/3/1, 
+start_remark=, 
+end_time=, 
+end_remark=, 
+traffic_time=2013/4/25, 
+traffic_remark=,
+project_name=青海省道西久公路（S101线）拉脊山隧道平行导洞扩建主洞工程,
+tunnel_name=拉脊山隧道, 
+tunnel_length=5565, 
+altitude=3200,
+altitude_remark=-4041, 
+completed_length=2684, 
+completed_remark=, 
+shaft=
+shaft_length=0, 
+construction=中铁十局集团西北工程有限公司, 
+design= 中交第二公路勘察设计研究院, 
+supervisor=重庆中宇工程咨询有限责任公司, 
+owner=青海省高等级公路建设管理局, 
+intro=长3.053km，清表15644m2，挖土方3699.95m3，利用土方3699m3，借石填方5695m3，浆砌片石挡土墙2704.9m3，沥青砼路面1.21万平方米，水泥砼路面1.925万平方米。预应力砼空心板简支梁桥一座110.06m；隧道为单洞（断面10.25×5），长度2684m。, 
