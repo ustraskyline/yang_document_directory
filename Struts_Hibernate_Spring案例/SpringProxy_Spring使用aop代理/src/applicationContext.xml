@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- 声明被代理类Bean -->
+	<!-- 目标类Bean -->
 	<bean id="userDao" class="example.UserDaoImpl"></bean>
 	
-	<!-- 声明切面类Bean -->
+	<!-- 切面类Bean(增强类Bean) -->
 	<bean id="myAspect"  class="example.SAspect"></bean>
 	
-	<!-- 代理类 -->
+	<!-- 代理类Bean, 代理类由Jar包提供，只需要在配置文件中配置即可 -->
 	<bean id="userDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<!-- 代理类实现的接口 -->
 		<property name="interfaces" value="example.UserDao"></property>

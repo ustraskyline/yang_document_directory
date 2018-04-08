@@ -6,8 +6,10 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
-
+	
+	<!-- 引入外部配置文件 -->
 	<context:property-placeholder location="classpath:c3p0-db.properties" />
+
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}"></property>
 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
@@ -27,18 +29,27 @@
 		<property name="accountDao" ref="accountDao"></property>
 	</bean>
 
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<!-- 声明式事务管理定义   数据源事务管理器, 依赖于数据源 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
-	<bean id="accountServiceProxy"
-		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+	<!-- 将数据源事务管理器注入到 TransactionProxyFactoryBean 中, 使用TransactionProxyFactoryBean生成代理 -->
+	<bean id="accountServiceProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<!-- transactionManager依赖注入 -->
 		<property name="transactionManager" ref="transactionManager"></property>
+		
+		<!-- 设置需要进行事务管理的目标类 -->
 		<property name="target" ref="accountService"></property>
+		
+		<!-- 代理类需要实现的接口 -->
 		<property name="proxyInterfaces" value="service.AccountService"></property>
+		
+		<!-- 设置事务相关属性, 给TransactionDefinition赋值 -->
 		<property name="transactionAttributes">
 			<props>
+				<!-- key表示对目标的哪些方法进行增强, save*表示以save开头的方法, 
+					标签中的文本按照固定格式编写事务的详情及TransactionDefinition内容 -->
 				<prop key="*">PROPAGATION_REQUIRED,ISOLATION_REPEATABLE_READ</prop>
 			</props>
 		</property>

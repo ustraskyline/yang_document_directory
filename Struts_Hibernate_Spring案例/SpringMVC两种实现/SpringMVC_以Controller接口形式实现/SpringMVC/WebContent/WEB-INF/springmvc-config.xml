@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+		<!-- 此即为Spring mvc的配置文件 -->
+		
+		<!-- 配置HelloController业务控制器, 映射到/hellow请求 -->
+		<bean name="/hello" class="org.fkit.controller.HelloController"/>
+		
+		
+		<!-- 以下3个bean在Spring 4.0之后可不进行配置, Spring会使用默认的来完成MVC工作 -->
+		
+<!-- 		
+		处理映射器, 其会将bean的name作为url进行查找
+		<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+		
+		处理适配器，完成对HelloController的handleRequest()方法的调用，所有处理适配器都需要实现HandlerAdapter接口
+		<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+		
+		视图解析器，解析视图，将View呈现给用户
+		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/> -->
+	
+	</beans>
