@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用户自定义的命名空间 -->
+<mapper namespace="org.fkit.mapper.UserMapper">
+
+	<!-- id="save"是唯一的标示符, parameterType属性指明插入时使用的参数类型, useGeneratedKeys="true"表示使用数据库的自动增长策略,
+		 #{name}表示取参数中对象的指定属性值 -->
+	<insert id="save" parameterType="org.fkit.domain.User" useGeneratedKeys="true">
+		INSERT INTO TB_USER(name,sex,age) VALUES(#{name},#{sex},#{age})
+	</insert>
+	
+	<update id="modifyUser" parameterType="org.fkit.domain.User">
+		UPDATE TB_USER SET name = #{name}, sex = #{sex}, age = #{age} WHERE id = #{id}
+	</update>
+	
+	<select id="selectUser" parameterType="int" resultType="org.fkit.domain.User">
+		SELECT * FROM TB_USER WHERE id = #{id}
+	</select>
+	
+	<delete id="deleteUser" parameterType="int">
+		DELETE FROM TB_USER where id = #{id}	
+	</delete>
+	
+	<!-- resultType="map"表示将一行记录组织到一个Map中，列名为key，列值为value，
+		 多行记录再放入List中，最后返回结果类型为List<Map<String, Object>> -->
+	<select	id="selectAll" resultType="map">
+		SELECT * FROM TB_USER
+	</select>
+	
+	<!-- resultMap可以解决持久类属性和数据表列名不一致时的映射问题 -->
+	<resultMap id="userResultMap" type="org.fkit.domain.User">
+		<!-- id表示数据库表的主键列，property指定数据表的列映射到的类属性，column表示数据表的列名 -->
+		<id property="id" column="user_id"/>
+		
+		<!-- result表示数据库表的普通列 -->
+		<result property="name" column="user_name"/>
+		<result property="sex" column="user_sex"/>
+		<result property="age" column="user_age"/>
+	</resultMap>
+	
+	<select id="selectAllUser2" resultMap="userResultMap">
+		SELECT * FROM TB_USER_2;
+	</select>
+
+	<resultMap id="studentResultMap" type="org.fkit.domain.Student">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="sex" column="sex"/>
+		<result property="age" column="age"/>
+		
+		<!-- select="selectClazzWithId" 执行该条查询语句，并将结果封装到 property="clazz" 所指定的类型对象中 -->
+		<association property="clazz" column="clazz_id" javaType="org.fkit.domain.Clazz" select="selectClazzWithId"/>	
+	</resultMap>
+	
+	<!-- parameterType 由<association>的column属性提供 -->
+	<select id="selectClazzWithId" resultType="org.fkit.domain.Clazz">
+		SELECT * FROM TB_CLAZZ where id = #{id}
+	</select>
+	
+	<!-- 返回的是resultMap的type属性指定的对象 -->
+	<select id="selectStudent" resultMap="studentResultMap">
+		SELECT * FROM TB_STUDENT
+	</select>
+
+</mapper>

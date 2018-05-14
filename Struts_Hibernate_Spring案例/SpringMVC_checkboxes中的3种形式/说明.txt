@@ -1,0 +1,1 @@
+：以List作为数据源value和label相同; 以map作为数据源checkbox的value为map的key，label为map的value；以List内部嵌套对象作为数据源使用itemlabel和itemValue来设置label和value

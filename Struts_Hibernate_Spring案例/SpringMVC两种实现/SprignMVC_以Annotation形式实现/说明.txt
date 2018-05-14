@@ -1,0 +1,8 @@
+通过Annotation：
+    web.xml内容与通过实现Controller接口方式一样，配置文件springmvc-config.xml中，不再处理请求映射与Controller类之间的对应关系，而是使用<context:component-scan base-package="com.yang.controller"> 指定
+需要扫描注解的包，在该包中扫描到带@Controller的类时，将此类注册为springmvc-config.xml中的 <bean>， @RequestMapping(value="/hello")则用来映射处理指定请求的方法，方法名称可以任意指定，如
+    @RequestMapping(value="/hello")
+    public ModelAndView hello(){...}
+方法中也需要新建ModelAndView并设置模型数据和视图名，然后返回。
+
+相应的，通过Annotation, 一个带 @Controller 的类可以有多个带 @RequestMapping 的方法，可以处理多个请求。

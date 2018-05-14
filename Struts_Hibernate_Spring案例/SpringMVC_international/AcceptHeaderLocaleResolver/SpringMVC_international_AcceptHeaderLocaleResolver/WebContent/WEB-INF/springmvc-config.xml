@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd     
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- spring可以自动去扫描base-pack下面的包或者子包下面的java文件， 如果扫描到有Spring的相关注解的类，则把这些类注册为Spring的bean -->
+	<!-- <context:component-scan base-package="org.fkit" /> -->
+
+	<context:component-scan base-package="org.fkit" />
+
+	<mvc:annotation-driven />
+
+	<!-- 视图解析器, 为控制器中处理方法返回的视图名加上前缀和后缀 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 前缀 -->
+		<property name="prefix">
+			<value>/WEB-INF/content/</value>
+		</property>
+		<!-- 后缀 -->
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<!-- messageSource Bean用于告诉Spring MVC国际化属性文件位置 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<!-- basenames 用来指定国际化属性文件名称 -->
+		<property name="basenames" value="message" />
+	</bean>
+
+	<!-- localeResolver 语言区域解析器，常用的语言区域解析器接口有: AcceptHeaderLocaleResolver(默认, 
+		SpringMVC读取浏览器的accept-language来确定使用哪个语言区域) SessionLocaleResolver CookieLocaleResolver -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
+
+	<mvc:interceptors>
+		<!-- 国际化操作拦截器 如果采用基于（Session/Cookie）则必需配置 -->
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	</mvc:interceptors>
+
+</beans>

@@ -1,0 +1,8 @@
+实现Controller接口：
+    前端控制器DispatcherServlet作为Servlet配置在web.xml中，在<servlet>的<init-param>中加入springmvc-config.xml配置文件作为DispatcherServlet的初始化参数。
+springmvc-config.xml中以Bean的形式配置处理各种映射的Controller类，如：
+    <bean name="/hello" class="org.yang.controller.HelloController"/>
+    
+    所有处理映射的Controller类都需要实现Controller接口，并实现 public ModelAndView handleRequest(HttpServletRequest, HttpServletResponse)方法，在该方法中通常需要新建一个ModelAndView对象，
+并通过addObject(String, Object)添加模型数据、setViewName()设置返回的物理视图资源名称，然后返回该ModelAndView对象。视图文件中通过EL表达式取值，如${requestScope.message}。
+    相应地，实现Controller接口的控制器类只能处理一个单一的请求，如上述的HelloController只能处理/hello请求。
